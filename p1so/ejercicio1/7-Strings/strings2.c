@@ -8,7 +8,17 @@ void copy2(char* org, char** dst)
 
 void copy(char* org, char* dst)
 {
-	strcpy(dst, org);	//dst = org
+	dst = org
+}
+
+void copy3(char* org, char* dst)
+{
+	dst = malloc(strlen(org) + 1);
+
+	for(int i = 0; i < strlen(org)+1; i++)
+	{
+		dst[i] = org[i];
+	}
 }
 
 void mod(char* org, char* dst)
