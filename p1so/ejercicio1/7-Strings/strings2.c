@@ -35,12 +35,13 @@ int main()
 	char* str2 = "other";
 	char str3[32];
 
-	copy(str1, str3);	//copy(str1, str2)
-	//copy2(str1, &str2);
-	printf("str1 %s str2 %s\n", str1, str3);	//printf("str1 %s str2 %s\n", str1, str2);
+	copy3(str1, str2);
+	//copy(str1, str2)
+	copy2(str1, &str2);
+	printf("str1 %s str2 %s\n", str1, str2);	
 
-	mod(str1, str3);
-	printf("str1 %s str3 %s\n", str1, str3);
+	mod(str1, str2);
+	printf("str1 %s str3 %s\n", str1, str2);
 
 	return 0;
 }
