@@ -43,7 +43,7 @@ int print_text_file(char *path)
 			switch (count)
 			{
 				case STUDENT_ID_IDX:
-					student.student_id = atoi(token);
+					student.student_id = atoi(token);	//atoi() == sttol(nptr, NULL, 10)
 					break;
 
 				case NIF_IDX:
@@ -51,7 +51,7 @@ int print_text_file(char *path)
 					break;
 
 				case FIRST_NAME_IDX:
-					student.first_name = strdup(token);
+					student.first_name = strdup(token); //devuelve un puntero a un nuevo string que es un duplicado de token, la memoria para el nuevo string se obtiene con malloc()
 					break;
 
 				case LAST_NAME_IDX:
