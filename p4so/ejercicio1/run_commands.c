@@ -159,6 +159,38 @@ int main(int argc, char *argv[]) {
 
 
 /*
+#include <unistd.h>
+
+int execvp(const char *file, char *const argv[]);
+
+se utilizan para ejecutar un programa diferente dentro del proceso actual. En lugar de crear un nuevo proceso (como lo hace fork),
+execvp reemplaza la imagen del proceso actual por un nuevo programa. Esto es útil cuando se desea ejecutar un comando dentro de un proceso y reemplazar el programa actual sin crear un proceso hijo.
+
+Parámetros
+file:
+El nombre del archivo o el comando que se va a ejecutar. Puede ser el nombre de un archivo ejecutable o un comando que esté en el $PATH (una lista de directorios donde se buscan los ejecutables).
+
+argv:
+Un arreglo de cadenas que representa los argumentos para el programa a ejecutar, donde:
+El primer argumento (argv[0]) debe ser el nombre del archivo ejecutable.
+El arreglo debe terminar con un puntero nulo (NULL).
+
+Valor de retorno
+execvp no devuelve si tiene éxito. Si se ejecuta correctamente, el proceso actual es reemplazado por el nuevo programa, y el nuevo programa se ejecuta.
+Si hay un error (por ejemplo, el archivo no se encuentra o no se puede ejecutar), devuelve -1 y establece errno para describir el error (por ejemplo, ENOENT si el archivo no se encuentra).
+
+#include <stdlib.h>
+
+void* realloc(void *ptr, size_t size);
+se utiliza para cambiar el tamaño de un bloque de memoria previamente asignado. 
+Es especialmente útil cuando necesitas redimensionar dinámicamente un arreglo o una estructura de datos que ha sido previamente asignada mediante malloc o calloc.
+
+Parámetros
+ptr:
+Un puntero al bloque de memoria previamente asignado con malloc, calloc o realloc. Si ptr es NULL, realloc actúa como malloc.
+size:
+El nuevo tamaño en bytes que deseas que tenga el bloque de memoria. Si el tamaño es menor que el tamaño original, la memoria se reduce. Si el tamaño es mayor, se añade más memoria.
+
 Uso de comillas dobles vs simples en -x: Si no se encierran los argumentos de -x entre comillas dobles, 
 la terminal puede interpretar los espacios como separadores de argumentos, y por tanto, el comando no se pasará correctamente. 
 Las comillas simples pueden funcionar si el shell lo permite, pero es más seguro usar dobles.
