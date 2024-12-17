@@ -29,3 +29,9 @@ int main(int argc, char* argv[])
 	
 	return 0;
 }
+
+/*
+El segundo parametro de fopen() nos indica el modo de apertura del fichero: "r", "rw".
+En este caso, el modo de apertura es w que se traduciria si usasemos open() en los modos de apertura O_CREAT | O_TRUNC | O_WRONLY
+
+*/
