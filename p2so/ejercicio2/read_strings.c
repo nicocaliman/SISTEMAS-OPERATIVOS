@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-    if((file = fopen(argv[1], "r")) == NULL)	//apertura del archivo en modo escritura
+    if((file = fopen(argv[1], "r")) == NULL)	//apertura del archivo en modo lectura
 	{
 		//si null		
 		err(2,"The input file %s could not be opened",argv[1]);
