@@ -40,4 +40,7 @@ int main(int argc, char* argv[])
 	fread(1,2,3,4): lee 3 cantidad de datos, cada uno con un 2 tamano de bytes, desde el fichero al que apunta el argumento 4, almacenandolo en el lugar dado por 1
 
 	fwrite(1,2,3,4): escribe 3 cantidad de datos, cada uno de tamanio 2 byte al stream al que apunta 4 obteniendolo desde 1
+ 
+	El parametro 1 es siempre un buffer desde el que se va a almacenar algo tras leer de archivo, o desde el que se va a leer algo para almacenarlo en un fichero
+
 */
