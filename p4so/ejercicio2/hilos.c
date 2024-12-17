@@ -70,11 +70,25 @@ Ademas, una vez los hilos comienzan a ejecutarse, no hay garantia de que mantend
 y escribiendo en la misma variable al mismo tiempo.
 
 Por lo que es mejor asignar una variable separada por cada HILO.
-
-int pthread_join(pthread_t thread, void **retval);
 */
 
 /*
+int pthread_join(pthread_t thread, void **retval);
+
 permite a un hilo esperar a que otro hilo termine su ejecución. Es útil para sincronizar hilos y 
 asegurar que el hilo principal (o cualquier otro hilo) espere el resultado de otro hilo antes de continuar.
+
+Parámetros
+thread: Es el identificador del hilo que se desea esperar. Este identificador se obtiene cuando se crea un hilo con pthread_create.
+retval: Es un puntero a una variable donde se almacenará el valor devuelto por el hilo que termina (normalmente definido en pthread_exit o el valor que devuelve la función ejecutada por el hilo). Si no te interesa este valor, puedes pasar NULL.
+
+Retorno
+Devuelve 0 si la llamada se realizó con éxito.
+En caso de error, devuelve un valor distinto de 0, como:
+ESRCH: El hilo no existe.
+EINVAL: El hilo no es "joinable" (por ejemplo, fue creado con la opción PTHREAD_CREATE_DETACHED).
+EDEADLK: Se detectó un deadlock al intentar realizar la operación.
+Comportamiento
+La llamada a pthread_join bloquea la ejecución del hilo llamante hasta que el hilo especificado en thread finaliza.
+Es comúnmente usada para asegurarse de que un hilo ha completado su tarea antes de que el programa finalice o se proceda con otras operaciones dependientes.
 */
