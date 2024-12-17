@@ -19,9 +19,9 @@ char *loadstr(FILE *file)
 	char c;
 	int tam_string = 1;	//contamos caracter nulo
 
-	while (fread(&c, sizeof(char),1, file) == 1 && c != '\0') 	//mientras 
+	while (fread(&c, sizeof(char),1, file) == 1 && c != '\0') 	//mientras no encontremos el caracter nulo y la lectura sea exitosa
 	{
-		tam_string++;	//actualizar contador
+		tam_string++;	//actualizar contador (no se va a contar '\0')
 	}
 
 	if (tam_string == 1)
