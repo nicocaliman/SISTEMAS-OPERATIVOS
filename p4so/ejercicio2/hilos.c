@@ -4,7 +4,7 @@
 
 #define THREADS_NUMBER 10
 
-struct threadArgs
+struct tharg
 {
 	int numHilo;
 	char prioridad;
