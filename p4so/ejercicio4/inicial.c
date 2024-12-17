@@ -45,6 +45,62 @@ int main(void)
 
 
 /*
+
+#include <sys/types.h>
+#include <sys/wait.h>
+
+pid_t wait(int *status);
+se utiliza para hacer que un proceso padre espere a que cualquiera de sus procesos hijos termine
+
+Parámetros
+status:
+Un puntero a un entero donde se almacena información sobre cómo terminó el proceso hijo.
+Si no necesitas esta información, puedes pasar NULL.
+
+Valor de retorno
+PID del hijo que cambió de estado si tiene éxito.
+-1 si hay un error (por ejemplo, si no hay procesos hijos activos).
+Establece errno para describir el error en caso de fallo.
+
+#include <stdio.h>
+
+int sprintf(char *str, const char *format, ...);
+se utiliza para escribir datos formateados en una cadena de caracteres en lugar de enviarlos directamente a la salida estándar (como lo haría printf).
+Es útil cuando necesitas manipular o almacenar una cadena antes de imprimirla o procesarla.
+Parámetros
+str:
+
+Un puntero a un búfer donde se almacenará la cadena resultante.
+Debe tener suficiente espacio para contener la cadena generada.
+format:
+
+Una cadena de formato similar a la utilizada en printf.
+Incluye especificadores como %d, %s, %f, etc., para insertar datos en la cadena.
+...:
+
+Una lista variable de argumentos que corresponden a los especificadores de formato
+
+#include <unistd.h>
+
+off_t lseek(int fd, off_t offset, int whence);
+
+se utiliza para mover el puntero de lectura/escritura en un archivo abierto. 
+Esto es útil para cambiar la posición en un archivo sin necesidad de leer o escribir datos, permitiendo la manipulación avanzada del archivo
+
+Parámetros
+fd:
+
+El descriptor de archivo al que se desea mover el puntero de lectura/escritura. Este descriptor se obtiene al abrir el archivo mediante la función open.
+offset:
+
+El desplazamiento en bytes desde la posición indicada por whence. El valor puede ser positivo o negativo, dependiendo de la operación que se desea realizar.
+whence:
+
+Define la posición desde la cual se realiza el desplazamiento. Puede ser uno de los siguientes valores:
+	SEEK_SET: El desplazamiento se realiza desde el inicio del archivo (es decir, offset es el número de bytes desde el principio del archivo).
+	SEEK_CUR: El desplazamiento se realiza desde la posición actual del puntero de lectura/escritura (es decir, offset se suma o resta de la posición actual).
+	SEEK_END: El desplazamiento se realiza desde el final del archivo (es decir, offset es el número de bytes desde el final del archivo, siendo offset negativo para ir hacia atrás).
+
 CAMBIOS:
 
 Posicionamiento Específico: Cada proceso hijo calcula su posición de escritura como i * 5, 
