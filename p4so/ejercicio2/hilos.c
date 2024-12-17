@@ -23,7 +23,7 @@ void *thread_usuario(void *arg)
 	free(thr_args);
 
 	//obtener id del hilo
-	pthread_t id = pthread_self();
+	pthread_t id = pthread_self();	//obtener id del hilo al que hemos invocado
 
 	printf("ID hilo: %lu Numero hilo: %d Prioridad: %c\n", id, nThread, prioridad);
 
@@ -37,12 +37,12 @@ int main(int argc, char* argv[])
 
 	for (int i = 0; i < THREADS_NUMBER; i++)
 	{
-		struct threadArgs *thr_usr = malloc(sizeof(struct threadArgs));
+		struct threadArgs *thr_usr = malloc(sizeof(struct threadArgs));	//usar memoria dinamica para crear una variable que guarde los argumentos de cada hilo
 
-		thr_usr->numHilo = i+1;
-		thr_usr->prioridad = ((i+1) % 2 == 0) ? 'P' : 'N';
+		thr_usr->numHilo = i+1;	//numero de hilo
+		thr_usr->prioridad = ((i+1) % 2 == 0) ? 'P' : 'N';	//par = prioritario impar = no prioritario
 
-		if(pthread_create(&threads[i], NULL, thread_usuario,thr_usr) != 0)
+		if(pthread_create(&threads[i], NULL, thread_usuario,thr_usr) != 0)	//pthread_create() == crear un nuevo hilo; el hilo empieza invocando al rutina thread_usuario(), el ultimo parametro es lo que se pasa como argumento a la rutina
 		{
 			perror("pthread_create");
 			exit(EXIT_FAILURE);
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 
 	for (int i = 0; i < THREADS_NUMBER; i++)
 	{
-		if(pthread_join(threads[i], NULL) != 0)
+		if(pthread_join(threads[i], NULL) != 0)	//
 		{
 			perror("error waiting thread");
 			exit(EXIT_FAILURE);
@@ -70,4 +70,11 @@ Ademas, una vez los hilos comienzan a ejecutarse, no hay garantia de que mantend
 y escribiendo en la misma variable al mismo tiempo.
 
 Por lo que es mejor asignar una variable separada por cada HILO.
+
+int pthread_join(pthread_t thread, void **retval);
+*/
+
+/*
+permite a un hilo esperar a que otro hilo termine su ejecución. Es útil para sincronizar hilos y 
+asegurar que el hilo principal (o cualquier otro hilo) espere el resultado de otro hilo antes de continuar.
 */
