@@ -166,6 +166,11 @@ int main(int argc, char *argv[])
 	}
 	
 	free(threads);	
+
+	// Destruir el mutex y las variables de condición
+	pthread_mutex_destroy(&mutex);
+	pthread_cond_destroy(&cond_vips_can_enter);
+	pthread_cond_destroy(&cond_no_vips_can_enter);
 	
 	return 0;
 }
