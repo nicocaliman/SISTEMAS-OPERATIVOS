@@ -73,6 +73,33 @@ Por lo que es mejor asignar una variable separada por cada HILO.
 */
 
 /*
+#include <pthread.h>
+
+int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg);
+
+Parámetros
+thread:
+
+Un puntero a una variable de tipo pthread_t que recibe el identificador del nuevo hilo creado.
+Este identificador se puede usar más tarde con otras funciones de la biblioteca pthread para manipular el hilo (por ejemplo, para esperar a que termine o para cancelarlo).
+attr:
+
+Un puntero a un objeto de tipo pthread_attr_t que define los atributos del hilo (por ejemplo, si el hilo será de prioridad alta o baja, o si debe ser creado como hilo desasociado).
+Si se pasa NULL, se utilizan los valores por defecto para los atributos del hilo.
+start_routine:
+
+Un puntero a la función que el hilo ejecutará una vez que se haya creado. La función debe tener la siguiente firma:
+
+void *func(void *arg);
+arg es un puntero a los datos que se pasan a la función. Si no se necesita pasar ningún dato, se puede usar NULL.
+arg:
+
+Un puntero a cualquier tipo de datos que se pasará como argumento a la función start_routine. Este parámetro puede ser NULL si no se requiere pasar información al hilo.
+
+Valor de retorno
+pthread_create devuelve 0 si el hilo fue creado correctamente.
+Si ocurre un error, devuelve un número negativo (por ejemplo, ENOMEM si no hay suficiente memoria).
+
 int pthread_join(pthread_t thread, void **retval);
 
 permite a un hilo esperar a que otro hilo termine su ejecución. Es útil para sincronizar hilos y 
