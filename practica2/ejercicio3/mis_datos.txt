@@ -1,0 +1,3 @@
+Barcelona 3.10 1
+Madrid 19.77 0
+Valencia 7.42 2
